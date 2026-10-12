@@ -11,10 +11,17 @@ def callBlock(split_length, block_name): # returns 2 values, for string splits a
 	block_name = f"{strSpl}\n{block_name.upper()}\n{strSpl}"
 	return strSpl, block_name
 
-def intInp(msg = ""):
+def intInp(msg = "", min_val = 0, max_val = 0):
+	"""
+	prints an input prompt using msg, then validates that this is an integer.
+	optional paramters min_val and max_val are self explanatory.
+	if these parameters are the same, then min and max won't be checked.
+	"""
 	while True:
 		try:
 			usIn = int(input(msg))
+			if (min_val != max_val) and (usIn < min_val or usIn > max_val):
+				raise ValueError
 		except ValueError:
 			print("\nPlease enter a valid integer.\n")
 		else:
