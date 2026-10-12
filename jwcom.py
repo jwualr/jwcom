@@ -31,7 +31,7 @@ class EZMenu:
 	def printLs(self, ls):
 		itr = 0
 		if len(self.set) > len(ls):
-			raise TypeError("List must be of same size as EZMenu.set.")
+			raise TypeError(f"List must be of same size as {self}.set.")
 		for i in self.set:
 			print(f"{i}. {ls[itr]}")
 			itr += 1
