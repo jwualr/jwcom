@@ -20,7 +20,7 @@ def intInp(msg = "", min_val = 0, max_val = 0):
 	while True:
 		try:
 			usIn = int(input(msg))
-			if max_val > min_val:
+			if max_val < min_val:
 				if usIn < min_val:
 					raise ValueError
 				else:
