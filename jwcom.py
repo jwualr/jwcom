@@ -38,20 +38,23 @@ class EZMenu:
 	Initiation requires an integer to create a tuple based on a range starting at 1 and ending with the integer.
 	printLs requires a list of strings as an argument, printing a numbered version of that list.
 	"""
-	def __init__(self, list_len):
-		self.set = tuple(range(1,list_len))
-	def printLs(self, ls):
-		itr = 0
-		if len(self.set) > len(ls):
-			raise TypeError(f"List must be of same size as {self}.set.")
+	def __init__(self, new_list):
+		self.set = []
+		for idx, i in enumerate(new_list):
+			self.set.append(f"{idx+1}. {i}")
+		self.set = tuple(self.set)
+	def __str__(self):
+		new_str = ""
 		for i in self.set:
-			print(f"{i}. {ls[itr]}")
-			itr += 1
+			new_str += i
+			if int(i[0]) < len(self.set):
+				new_str += '\n'
+		return new_str
 	def inp(self, msg):
 		while True:
 			try:
 				usIn = int(input(f"{msg}"))
-				if usIn > self.set[-1] or usIn < self.set[0]:
+				if usIn > len(self.set) or usIn < 1:
 					raise ValueError
 			except ValueError:
 				print("\nPlease enter a valid integer.\n")
