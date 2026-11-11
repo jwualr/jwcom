@@ -1,1 +1,1 @@
-from . import jwcom
+from .jwcom import *
