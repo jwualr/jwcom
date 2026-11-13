@@ -62,31 +62,3 @@ class EZMenu:
 				print("\nPlease enter a valid integer.\n")
 			else:
 				return usIn
-
-class EZRMenu:
-	"""
-	takes in an object of type EZMenu.
-	EZRMenu.run(defList) will run a list of functions corresponding to options of EZMenu.
-	By default, instead of running the command at index -1, the loop will end.
-	If lastExit is set to False, however, it will exit when a function run returns any from a list of words.
-	However, as of right now it's implemented poorly and isn't recommended.
-	"""
-	def __init__(self, ezMen):
-		if not isinstance(ezMen, EZMenu):
-			raise TypeError("When initialzing EZRMenu, ezMen must be of type EZMenu")
-		self.menYou = ezMen
-	def run(self, defList, title = None, prompt = 'choose: ', lastExit = True):
-		if not len(defList) == len(self.menYou):
-			raise ValueError("defList must be of same length as menYou")
-		if title:
-			strSpl, clBl = callBlock(42, title)
-		while True:
-			if title:
-				print(clBl)
-			print(self.menYou)
-			usIn = self.menYou.inp(prompt)
-			if lastExit and usIn == len(defList):
-				return
-			elif defList[usIn-1] in {'exit', 'quit', 'leave', 'stop'}:
-				return
-			defList[usIn-1]()
